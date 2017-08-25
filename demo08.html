@@ -27,6 +27,15 @@
        <div :style="{background:bg}"></div>
        <input type="text" :disabled="status" v-model="bg">
        <input type="button" value="checks" @click="check()">
+       <br/>
+       <br/>
+       <input type="text" v-model="url">
+       <a :href="'https://' + url" target="_blank">测试连接</a>
+       <br/>
+       <br/>
+       <input type="button" @click="changeSize()" value="改变大小">   
+       <br/>
+       <img src="test.png" :style="{width: size + 'px', height: size + 'px'}" alt="">    
    </div>   
 </body>
 </html>
@@ -35,11 +44,22 @@
         el: '.vue',
         data: {
             bg: 'red',
-            status: false
+            status: false,
+            url: '',
+            size: 100,
+            sta: false
         },
         methods: {
             check(){
                 this.status = !this.status;
+            },
+            changeSize(){
+                this.sta = !this.sta;
+                if(this.sta == false){
+                    this.size = 100;
+                } else {
+                    this.size = 200;
+                }
             }
         }
     });    

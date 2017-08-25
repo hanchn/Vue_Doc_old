@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板语法</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="vue">
+          <h1>字符串拼接</h1>
+          <br/>
+          <span>{{vals + 'World!'}}</span>
+          <br/>
+          <br/>
+          <h1>数值拼接</h1>
+          <br/>
+          <span>{{nums + 100}}</span>  
+          <br/>
+          <br/>          
+          <h1>HTML渲染</h1>
+          <!--动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击-->
+          <span v-html='innerHtml'></span>  
+          <h1>文本渲染</h1>
+          <span v-text='innerHtml'></span>     
+          <br/>
+          <br/>                 
+          <h1>Javascript表达式</h1> 
+          <br/>
+          <span>{{arr = vals.split('')}}</span>   
+          <br/>
+          <br/>
+          <ul>
+              <li v-for="val in arr">
+                  {{val}}
+              </li>
+          </ul>
+          <br/>
+          <br/>          
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: 'Hello',
+            nums: 100,
+            innerHtml: '<a>这是一个HTML</a>',
+            arr: []
+        }
+    });    
+</script>
