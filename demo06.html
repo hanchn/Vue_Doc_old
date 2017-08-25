@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue中数据遍历</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+   <div class="vue">
+       <h2>数组遍历</h2>
+       <ul>
+           <li v-for="val in arr">
+               valus: {{val}} 
+           </li>
+       </ul>
+       <h2>数组键值对遍历</h2>
+       <ul>
+            <li v-for="(val, key) in arr">
+                valus: {{val}} , key: {{key}} 
+            </li>
+        </ul>  
+        
+        <h2>Obj对象键值对遍历方式</h2>
+        <ul>
+             <li v-for="val in obj">
+                 ID: {{val.ID}} , uName: {{val.uName}} 
+             </li>
+         </ul>   
+         
+         <h2>Obj对象键值对遍历方式</h2>
+         <ul>
+              <li v-for="(val, key, index) in obj2">
+                  索引：{{index}} - key: {{key}} - value: {{val}}
+              </li>
+          </ul>   
+          
+          <h2>遍历整数</h2>
+          <ul>
+               <li v-for="val in 3">
+                   {{val}}
+               </li>
+           </ul>             
+   </div> 
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            arr: ['a', 'b', 'c'],
+            obj: [
+                {'ID': '01', 'uName': 'Bob'},
+                {'ID': '02', 'uName': 'Morty'},
+                {'ID': '03', 'uName': 'Rick'},
+            ],
+            obj2: {'ID': '01', 'uName': 'Bob'}
+        }
+    });    
+</script>

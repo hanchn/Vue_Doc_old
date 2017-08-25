@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件修饰符</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }
+
+        .per{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin-bottom: 50px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .son{
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="vue">
+        <h1>未阻止冒泡</h1>
+        <div class="per" @click="per()">
+            per
+            <div class="son" @click="son()">
+                son
+            </div>
+        </div>
+
+        <h1>阻止冒泡</h1>
+        <div class="per" @click="per()">
+            per
+            <div class="son" @click.stop="son()">
+                son
+            </div>
+        </div>  
+        
+        <h1>未阻止默认事件</h1>
+        <a href="www.baidu.com" @click="info()">点击弹出提示</a>
+        <br/><br/>
+        <h1>阻止默认事件</h1>
+        <a href="www.baidu.com" @click.prevent="info()">点击弹出提示</a>  
+        <br/><br/>
+
+        <h1>事件捕获模式</h1>
+        <div class="per" @click.capture="per()">
+            per
+            <div class="son" @click.capture="son()">
+                son
+            </div>
+        </div>  
+        
+        <h1>self</h1>
+        <div class="per" @click.self="per()">
+            per
+            <div class="son" @click.self="son()">
+                son
+            </div>
+        </div>          
+
+    </div>
+</body>
+</html>
+<script>
+     new Vue({
+        el: '.vue',
+        data: {
+
+        },
+        methods: {
+            per(ev){
+                alert('this is per');
+            },
+            son(){
+                alert('this is son');
+            },
+            info(){
+                alert('alert something!')
+            }
+        }
+    }); 
+</script>

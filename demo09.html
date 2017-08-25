@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue综合练习01</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }
+
+        table{
+            width: 800px;
+            border-collapse: collapse;
+        }
+
+        th, td{
+            border: 1px solid #e8e8e8;
+            height: 40px;
+            height: 40px;
+            text-align: center;
+        }
+
+        input[type='button']{
+            border: none;
+            background: #000;
+            border-radius: 4px;
+            background: #000;
+            color: #FFF;
+            width: 80px;
+            height: 30px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type='text']{
+            border:none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+   <div class="vue">
+       <table>
+           <thead>
+               <th>ID</th>
+               <th>姓名</th>
+               <th>性别</th>
+               <th>操作</th>
+           </thead>  
+           <tbody>
+               <tr v-for="(val, key) in vals">
+                   <td>{{val.ID}}</td>
+                   <td>{{val.uName}}</td>
+                   <td>{{val.gender}}</td>
+                   <td><input type="button" value="删除" @click="delOne(key)"></td>
+               </tr>
+               <tr>
+                   <td colspan="4" v-show="vals.length == 0">暂无数据</td>
+               </tr>
+               <tr>
+                    <td><input type="text" placeholder="用户名" v-model='setUname'></td>
+                    <td><input type="text" placeholder="性别" v-model='setGender'></td>
+                    <td><input type="button" value="添加数据" @click="add()"></td>
+                    <td><input type="button" value="删除所有" @click="del()"></td>
+                </tr>
+           </tbody>  
+       </table>
+       
+   </div>   
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: [
+                {'ID': '01', 'uName': 'Bob', 'gender': 'male'},
+                {'ID': '02', 'uName': 'Jerry', 'gender': 'male'},
+                {'ID': '03', 'uName': 'Lili', 'gender': 'female'},
+            ],
+            setUname: '',
+            setGender: ''
+        },
+        methods: {
+            delOne(key){
+                 this.vals.splice(key, 1);
+            },
+            add(){
+                if(this.setUname !== '' && this.setGender !== ''){
+                    this.vals.push({
+                        'ID': this.vals.length + 1 > 9 ?  this.vals.length + 1 : '0' +(this.vals.length + 1),
+                        'uName': this.setUname,
+                        'gender': this.setGender
+                    });
+                    this.setUname = '';
+                    this.setGender = '';
+                } else {
+                    alert('用户名或性别不能为空！');
+                }
+            },
+            del(){
+                this.vals = [];
+            }
+        }
+    });    
+</script>

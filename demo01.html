@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue中的$语法与挂载</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+   <div class="vue">
+       <span>{{vals}}</span>
+   </div> 
+</body>
+</html>
+<script>
+    // Vue中如果不在new实例创建中进行属性的声明，那么可以依赖$与拓展名进行绑定属性
+    //方式一 
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: 'Hello World !'
+        }
+    });
+
+    //方式二
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: 'Hello World !'
+        }
+    }).$mount('.vue');
+
+    //方式三
+    var vm = new Vue({
+        el: '.vue',
+        data: {
+            vals: 'Hello World !'
+        }
+    });  
+    vm.$mount('.vue');
+</script>

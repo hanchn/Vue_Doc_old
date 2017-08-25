@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue中的属性绑定02</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+   <div class="vue">
+       <div :style="{background:bg}"></div>
+       <input type="text" :disabled="status" v-model="bg">
+       <input type="button" value="checks" @click="check()">
+   </div>   
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            bg: 'red',
+            status: false
+        },
+        methods: {
+            check(){
+                this.status = !this.status;
+            }
+        }
+    });    
+</script>

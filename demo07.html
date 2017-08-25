@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue中的属性绑定</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        div{
+            width:100px;
+            height: 100px;
+            margin: 20px;
+            background: #666;
+        }
+
+        .bg{
+            background: red;
+        }
+
+        .big{
+            width: 200px;
+            height: 200px;
+        }
+
+        .small{
+            width: 50px;
+            height: 50px;
+        }        
+    </style>
+</head>
+<body>
+   <div class="vue">
+       <div v-bind:class="bg"></div>  
+       <div v-bind:class="{bg: status}"></div>    
+       <div v-bind:class="{bg: vals !== 0}"></div>    
+       <div v-bind:class="[bg, big]"></div>   
+       <div v-bind:class="[vals > 0? small: big, bg]"></div>  
+       <div v-bind:style="{width: 300 + 'px'}"></div>    
+       <div v-bind:style="style"></div>   
+       <div v-bind:style="[style, style2]">123</div>         
+   </div>   
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            bg: 'bg',
+            status: true,
+            vals: 1,
+            big: 'big',
+            small: 'small',
+            style: {
+                width: 150 + "px",
+                height: 120 + "px"
+            },
+            style2: {
+                'color': 'blue'
+            }
+        }
+    });    
+</script>

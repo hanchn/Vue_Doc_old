@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue综合练习02</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+            background: #e8e8e8;
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+
+        .vue{
+            width: 300px;
+            height: 250px;
+            border-radius: 4px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -125px;
+            background: #FFF;
+            overflow: hidden;
+        }
+        
+        .tit{
+            width: auto;
+            height: 40px;
+            line-height: 40px;
+            background: green;
+            color: #FFF;
+            padding: 0 20px;
+        }
+        .con{
+            width: auto;
+            padding: 20px;
+        }
+
+        .inp-group{
+            width: auto;
+            height: 40px;
+            margin-bottom: 20px; 
+        }
+
+        .inp-group label{
+            float: left;
+            width: 50px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .inp-group .inp{
+            width: auto;
+            height: 18px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #e8e8e8;
+            margin-left: 50px;
+        }
+
+        .inp input{
+            width: 100%;
+            height: 100%;
+            line-height: 20px;
+            font-size: 14px;
+            color:#333;
+            outline: none;
+            border: none;
+        }
+
+        input[type='button']{
+            width: 80px;
+            height: 40px;
+            border-radius: 4px;
+            color:#333;
+            text-align: center;
+            line-height: 40px;
+            border:none;
+            outline: none;
+            background: green;
+            color: #FFF;
+            float: right;
+            font-size: 14px;
+        }
+
+        .cursor{
+            cursor: pointer;
+        }
+
+        input[type='button'].gray{
+            background: #999;
+            color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+   <div class="vue">
+       <div class="tit">
+           登陆
+       </div>
+       <div class="con">
+           <div class="inp-group">
+                <label>账号：</label>
+                <div class="inp">
+                    <input type="text" placeholder="请输入账号" v-model='setName' @keyUp='check()'>
+                </div>
+           </div>
+           <div class="inp-group">
+                <label>密码：</label>
+                <div class="inp">
+                    <input type="password" placeholder="请输入密码"  v-model='setPwd' @keyUp='check()'>
+                </div>
+           </div>
+           <input type="button" :disabled='dis' :class='{cursor: !dis, gray: dis}' value="立即登录" @click='href()'>
+       </div>
+   </div>   
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+           uName: 'admin',
+           uPwd: '123',
+           dis: true,
+           setName: '',
+           setPwd: ''
+        },
+        methods: {
+            check(){
+                if(this.uName == this.setName && this.uPwd == this.setPwd){
+                    this.dis = false;
+                }
+            },
+            href(){
+                if(this.dis == false){
+                    alert('success!');
+                } else {
+                    return false;
+                }
+            }
+        }
+    });    
+</script>

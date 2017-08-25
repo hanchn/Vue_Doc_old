@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue v-show指令</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+   <div class="vue">
+       <input type="button" value="显示或者隐藏" @click="fun()">
+       <span v-show="status" >{{vals}}</span>
+   </div> 
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: 'Hello World !',
+            status: true
+        },
+        methods: {
+            fun(){
+                this.status =  !this.status;
+            }
+        }
+    });    
+</script>

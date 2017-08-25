@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>按键修饰符</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="vue">
+        <h1>键值修饰符 名</h1>
+        <input type="button" @keydown.enter="info()" value="点击我(回车键)">
+        <input type="button" @keydown.space="info()" value="点击我（空格键）">
+        <input type="button" @keydown.top="info()" value="点击我（上键）">
+        <input type="button" @keydown.right="info()" value="点击我（右键）">
+        <input type="button" @keydown.bottom="info()" value="点击我（下键）">
+        <input type="button" @keydown.left="info()" value="点击我（左键）">
+        <br/>
+        <br/>
+        <h1>键值修饰符 数值</h1>
+        <input type="button" @keydown.13="info()" value="点击我(回车键)">
+        <input type="button" @keydown.32="info($event)" value="点击我（空格键）">
+        <input type="button" @keydown.38="info()" value="点击我（上键）">
+        <input type="button" @keydown.39="info()" value="点击我（右键）">
+        <input type="button" @keydown.40="info()" value="点击我（下键）">
+        <input type="button" @keydown.37="info()" value="点击我（左键）">  
+        <br/>
+        <br/>          
+        <h1>自定义键值修饰符别名 </h1>    
+        <input type="button" @keydown.test="info()" value="点击我(上键)">
+        <input type="button" @keydown.test-me="info()" value="点击我(回车键)">
+        <input type="button" @keydown.testKey="info()" value="点击我(空格键)">
+        <input type="button" @keydown.tests="info()" value="点击我(右键和下键)">
+    </div>
+</body>
+</html>
+<script>
+    // 自定义键值修饰符
+    // 注意点 驼峰式命名在DOM中使用时要改成横杠
+    Vue.config.keyCodes = {
+        test: 38,
+        'test-me': 13,  //横杠式命名要加引号
+        'testKey': 32, // 驼峰式语法不可用
+        tests: [39, 40]
+    }   
+
+    new Vue({
+        el: '.vue',
+        data: {
+
+        },
+        methods: {
+            info(ev){
+                alert('Hello World !');
+            }
+        }
+    }); 
+</script>
