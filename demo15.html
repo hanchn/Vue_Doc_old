@@ -40,19 +40,32 @@
         <ul>
             <li v-for="val in arr" :class="{h:val>10}">{{ val| fun}}</li>
         </ul>
+
+        <br/>
+        <br/>
+        <h1>{{val | funs}}</h1>
     </div>
 </body>
 </html>
 <script>
+//    Vue.filter('fun', function(val){
+//     return val > 10? val + '大于0': val + '不大于0';
+//    })
+
     new Vue({
         el: '.vue',
         data: {
-            arr: [1, 10, 20, 5, 9, 8, 4, 12]
+            arr: [1, 10, 20, 5, 9, 8, 4, 12],
+            val: 10
         },
         filters: {
+            // 单向过滤器
             fun(val){
                 return val > 10? val + '大于0': val + '不大于0';
+            },
+            funs: {
+                
             }
         }
-    });    
+    });      
 </script>

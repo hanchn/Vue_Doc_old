@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中动态组件</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+         <input type="button" @click="checks()" value="点击切换动态组件模板">
+         <component :is="com"></component>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '.vue',
+        data: {
+            status: true,
+            com: 'aCom'
+        },
+        methods: {
+            checks(){
+                this.status= !this.status;
+                if(this.status){
+                    this.com = 'aCom';
+                } else {
+                    this.com = 'bCom';
+                }
+            }
+        },
+        components: {
+            'aCom': {
+                template: '<h1>动态组件01</h1>'
+            },
+            'bCom': {
+                template: '<h1>动态组件02</h1>'
+            }    
+        }
+    });      
+</script>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的全局组件</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+            <test></test>    
+    </div>
+</body>
+</html>
+<script>
+    // 基本组件创建  01
+    //    Vue.component('test', {
+    //        template: 'Hello World !'
+    //    })
+
+    // 组件数据传递 02
+    // Vue.component('test', {
+    //     template: '<h1>{{vals}}</h1>',
+    //     data: function(){ //组件中的data必须是函数，返回值必须是对象
+    //         return {
+    //             vals: 'Hello World !'
+    //         }
+    //     }
+    // })
+
+    //组件中的作用域方法 03
+    // Vue.component('test', {
+    //     template: ` <input type="button" @click="fun()" value="点击弹出内容">`,
+    //     data: function(){ //组件中的data必须是函数，返回值必须是对象
+    //         return {
+    //             vals: 'Hello World !'
+    //         }
+    //     },
+    //     methods: {
+    //         fun(){
+    //             alert(this.vals);
+    //         }
+    //     }
+    // }) 
+
+    // 组件的内容必须包裹在一个父元素中 04
+    // Vue.component('test', {
+    //     template: `<div>
+    //                     <h1>{{vals}}</h1>
+    //                     <input type="button" @click="fun()" value="点击弹出内容">
+    //                </div>`,
+    //     data: function(){ //组件中的data必须是函数，返回值必须是对象
+    //         return {
+    //             vals: 'Hello World !'
+    //         }
+    //     },
+    //     methods: {
+    //         fun(){
+    //             alert(this.vals);
+    //         }
+    //     }
+    // })     
+
+
+    new Vue({
+        el: '.vue'
+    });      
+</script>

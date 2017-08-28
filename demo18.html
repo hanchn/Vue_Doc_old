@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中组件模板语法</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+         <test></test>  
+         <tests></tests>
+    </div>
+    <template id="tests">
+            <ul>
+                <li v-for="val in vals">{{val}}</li>
+            </ul>
+    </template>    
+</body>
+</html>
+<!--JS 组件语法-->
+<script type="x-template" id="test">
+    <input type="button" value="测试下模板组件语法">
+</script>
+<script>
+    new Vue({
+        el: '.vue',
+        components: {
+            'test': {
+                template: '#test'
+            },
+            'tests': {
+                data: function(){
+                   return {
+                       vals: ['Bob', 'Lili', 'Jerry', 'Morty']
+                    }
+                },
+                template: '#tests'
+            }
+        }
+    });      
+</script>

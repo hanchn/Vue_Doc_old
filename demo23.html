@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中跨父子组件共享数据props</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+        <per></per>
+    </div>
+</body>
+</html>
+<script>
+    // 默认情况父子组件无法共享数据
+    new Vue({
+        el: '.vue',
+        components: {
+            'per': {
+                data: function(){
+                    return {
+                        perVals: ''
+                    }
+                },
+                template: '<span>父组件 获取子组件的值：{{perVals}}； <son @test="get"></son></span>',
+                methods: {
+                    get(data){
+                        console.log(data);
+                        this.perVals = data;
+                    }
+                },                
+                components: { //嵌套子组件的根为 a
+                    'son': {
+                        data: function(){
+                             return {
+                                 val: '子组件中的数据'
+                             }
+                        },
+                        template: `<strong>嵌套子组件 
+                                         {{val}} 
+                                         <input type="button" @click="send()" value="点击向父组件传递数据">
+                                  </strong>`,
+                        methods: {
+                            send(){
+                                this.$emit('test', this.val) //（事件，数据）
+                                console.log('发射了数据：' + this.val);
+                            }
+                        }          
+                    }    
+                }
+            }
+        }
+    });      
+</script>

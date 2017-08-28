@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的局部组件</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+            <test></test><br/>
+            <test-me></test-me>
+            <test-test></test-test>
+            <inner></inner> 
+    </div>
+</body>
+</html>
+<script>
+    // 局部组件创建 01
+    var test = Vue.extend({
+        template: '<h1>测试局部组件</h1>'
+    });
+
+    // 驼峰式语法格式 02
+    var cam = Vue.extend({
+        template: '<h1>测试局部组件 驼峰式语法命名</h1>'
+    });
+
+    // 驼峰式语法格式 02
+    var line = Vue.extend({
+        template: '<h1>测试局部组件 横杠式语法命名</h1>'
+    });   
+
+
+
+    new Vue({
+        el: '.vue',
+        components: {
+            'test': test,
+            'testMe': cam,
+            'test-test': line,
+            'inner': {
+                template: '<h1>局部组件的另外一种书写方式</h1>'
+            }
+        }
+    });      
+</script>
