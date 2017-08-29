@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的resource Ajax和JSONP</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+
+    </div>
+</body>
+</html>
+<script>
+    // 默认情况父子组件无法共享数据
+    new Vue({
+        el: '.vue',
+        methods: {
+            get(){
+                // GET /someUrl
+                this.$http.get('/').then(response => {
+                    // get body data
+                    this.someData = response.body;
+                }, response => {
+                    // error callback
+                });
+            },
+
+            post(){
+                // POST /someUrl
+                this.$http.post('/').then(response => {
+                    // get body data
+                    this.someData = response.body;
+                }, response => {
+                    // error callback
+                });
+            },
+
+            jsonp(){
+                // POST /someUrl
+                this.$http.jsonp('/', {
+                    wd: 'a'  //查询参数
+                }, {
+                    jsonp: 'cb' //回调函数的名字
+                }).then(response => {
+                    // get body data
+                    this.someData = response.body;
+                }, response => {
+                    // error callback
+                });
+            }            
+        }
+    });      
+</script>

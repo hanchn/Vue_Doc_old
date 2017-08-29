@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>模板语法</title>
+    <title>vue综合练习03</title>
     <script src="https://unpkg.com/vue"></script>
     <style>
         *{
@@ -15,39 +15,56 @@
         html, body{
             height: 100%;
         }
+        
+        ul{
+            width: 220px;
+            margin: 0 auto;
+        }
+       
+        ul, li{
+            list-style-type: none;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            color: #000;
+            font-family: 'Microsoft YaHei';
+            padding: 0 10px;
+        }
+
+        .bg{
+            background: #000;
+            color: #FFF;
+        }
+
+        .inp{
+            width: 200px;
+            height: 20px;
+            padding: 10px;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            margin: 20px auto;
+        }
+
+        .inp input{
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            background: none;
+        }
     </style>
 </head>
 <body>
     <div class="vue">
-          <h1>字符串拼接</h1>
-          <br/>
-          <span>{{vals + 'World!'}}</span>
-          <br/>
-          <br/>
-          <h1>数值拼接</h1>
-          <br/>
-          <span>{{nums + 100}}</span>  
-          <br/>
-          <br/>          
-          <h1>HTML渲染</h1>
-          <!--动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击-->
-          <span v-html='innerHtml'></span>  
-          <h1>文本渲染</h1>
-          <span v-text='innerHtml'></span>     
-          <br/>
-          <br/>                 
-          <h1>Javascript表达式</h1> 
-          <br/>
-          <span>{{arr = vals.split('')}}</span>   
-          <br/>
-          <br/>
-          <ul>
-              <li v-for="val in arr">
-                  {{val}}
-              </li>
-          </ul>
-          <br/>
-          <br/>          
+        <div class="inp">
+            <input type="text" placeholder="search..." v-model='val' @keydown.40.prevent="keyDown('down', $event)" @keydown.38.prevent="keyDown('up', $event)">
+        </div>
+        <ul>
+                <li v-for="(v, i) in vals" :class="{bg: i== key}">{{v}}</li>
+        </ul>   
     </div>
 </body>
 </html>
@@ -55,10 +72,30 @@
     new Vue({
         el: '.vue',
         data: {
-            vals: 'Hello',
-            nums: 100,
-            innerHtml: '<a>这是一个HTML</a>',
-            arr: []
+            vals: [
+                '这是一条数据测试01',
+                '这是一条数据测试02',
+                '这是一条数据测试03',
+                '这是一条数据测试04',
+                '这是一条数据测试05',
+                '这是一条数据测试06',
+                '这是一条数据测试07',
+                '这是一条数据测试08',
+            ],
+            key: 0,
+            val: ''
+        },
+        methods: {
+            keyDown(dir, ev){
+                if(dir == 'down'){
+                    if(this.key < this.vals.length - 1)
+                    this.key++;
+                } else if(dir == 'up'){
+                    if(this.key > 0)
+                    this.key--;                    
+                }
+                this.val = this.vals[this.key]
+            }        
         }
     });    
 </script>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中跨父子组件共享数据props</title>
+    <title>Vue中嵌套组件</title>
     <script src="https://unpkg.com/vue"></script>
     <style>
         *{
@@ -24,21 +24,19 @@
 </body>
 </html>
 <script>
-    // 默认情况父子组件无法共享数据
     new Vue({
         el: '.vue',
         components: {
             'per': {
                 data: function(){
                    return {
-                       vals: "我是父组件中定义的的数据"
+                       vals: "我是父组件中的数据"
                    }
                 },
-                template: '<span>嵌套组件父 {{vals}} : <son :val="vals"></son></span>',
+                template: '<span>嵌套组件父 {{vals}} : <son></son></span>',
                 components: { //嵌套子组件的根为 a
                     'son': {
-                        props: ['val'],
-                        template: '<strong>嵌套子组件{{val}}</strong>'
+                        template: '<strong>嵌套子组件</strong>'
                     }    
                 }
             }

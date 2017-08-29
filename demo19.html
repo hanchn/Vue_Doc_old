@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中动态组件</title>
+    <title>Vue中组件模板语法</title>
     <script src="https://unpkg.com/vue"></script>
     <style>
         *{
@@ -19,35 +19,35 @@
 </head>
 <body>
     <div class="vue">
-         <input type="button" @click="checks()" value="点击切换动态组件模板">
-         <component :is="com"></component>
+         <test></test>  
+         <tests></tests>
     </div>
+    <template id="tests">
+            <ul>
+                <li v-for="val in vals">{{val}}</li>
+            </ul>
+    </template>    
 </body>
 </html>
+<!--JS 组件语法-->
+<script type="x-template" id="test">
+    <input type="button" value="测试下模板组件语法">
+</script>
 <script>
     new Vue({
         el: '.vue',
-        data: {
-            status: true,
-            com: 'aCom'
-        },
-        methods: {
-            checks(){
-                this.status= !this.status;
-                if(this.status){
-                    this.com = 'aCom';
-                } else {
-                    this.com = 'bCom';
-                }
-            }
-        },
         components: {
-            'aCom': {
-                template: '<h1>动态组件01</h1>'
+            'test': {
+                template: '#test'
             },
-            'bCom': {
-                template: '<h1>动态组件02</h1>'
-            }    
+            'tests': {
+                data: function(){
+                   return {
+                       vals: ['Bob', 'Lili', 'Jerry', 'Morty']
+                    }
+                },
+                template: '#tests'
+            }
         }
     });      
 </script>

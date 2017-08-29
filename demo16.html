@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中的全局组件</title>
+    <title>自定义过滤器</title>
     <script src="https://unpkg.com/vue"></script>
     <style>
         *{
@@ -14,66 +14,58 @@
 
         html, body{
             height: 100%;
-        }      
+        }
+
+        ul{
+            width: 100px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        li{
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        li.h{
+            background: #000;
+            color: #FFF;
+        }
     </style>
 </head>
 <body>
     <div class="vue">
-            <test></test>    
+        <!--vue2.0 之后唾弃了原始过滤器-->
+        <ul>
+            <li v-for="val in arr" :class="{h:val>10}">{{ val| fun}}</li>
+        </ul>
+
+        <br/>
+        <br/>
+        <h1>{{val | funs}}</h1>
     </div>
 </body>
 </html>
 <script>
-    // 基本组件创建  01
-    //    Vue.component('test', {
-    //        template: 'Hello World !'
-    //    })
-
-    // 组件数据传递 02
-    // Vue.component('test', {
-    //     template: '<h1>{{vals}}</h1>',
-    //     data: function(){ //组件中的data必须是函数，返回值必须是对象
-    //         return {
-    //             vals: 'Hello World !'
-    //         }
-    //     }
-    // })
-
-    //组件中的作用域方法 03
-    // Vue.component('test', {
-    //     template: ` <input type="button" @click="fun()" value="点击弹出内容">`,
-    //     data: function(){ //组件中的data必须是函数，返回值必须是对象
-    //         return {
-    //             vals: 'Hello World !'
-    //         }
-    //     },
-    //     methods: {
-    //         fun(){
-    //             alert(this.vals);
-    //         }
-    //     }
-    // }) 
-
-    // 组件的内容必须包裹在一个父元素中 04
-    // Vue.component('test', {
-    //     template: `<div>
-    //                     <h1>{{vals}}</h1>
-    //                     <input type="button" @click="fun()" value="点击弹出内容">
-    //                </div>`,
-    //     data: function(){ //组件中的data必须是函数，返回值必须是对象
-    //         return {
-    //             vals: 'Hello World !'
-    //         }
-    //     },
-    //     methods: {
-    //         fun(){
-    //             alert(this.vals);
-    //         }
-    //     }
-    // })     
-
+//    Vue.filter('fun', function(val){
+//     return val > 10? val + '大于0': val + '不大于0';
+//    })
 
     new Vue({
-        el: '.vue'
+        el: '.vue',
+        data: {
+            arr: [1, 10, 20, 5, 9, 8, 4, 12],
+            val: 10
+        },
+        filters: {
+            // 单向过滤器
+            fun(val){
+                return val > 10? val + '大于0': val + '不大于0';
+            },
+            funs: {
+                
+            }
+        }
     });      
 </script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的具名插槽</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+        }      
+    </style>
+</head>
+<body>
+    <div class="vue">
+        <tem></tem>
+        <br/><br/>
+        <tem>
+            <h1 slot="header">覆盖插槽一</h1>
+            <h1 slot="footer">覆盖插槽二</h1>
+        </tem>
+    </div>
+</body>
+</html>
+<script>
+    // 默认情况父子组件无法共享数据
+    new Vue({
+        el: '.vue',
+        components: {
+            'tem': {
+                template: `
+                            <div>
+                                <span>组件头部</span><br/>
+                                <slot name="header">第一个具名插槽</slot><br/>
+                                <slot name="footer">第二个具名插槽</slot><br/>
+                                <span>组件底部</span><br/> 
+                            </div>
+                          `
+            }
+        }
+    });      
+</script>

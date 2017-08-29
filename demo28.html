@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的resource jsonp实战</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="vue-resource.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .inp{
+            width: 200px;
+            height: 20px;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 0 auto 20px auto;
+        }      
+
+        .inp input{
+            width: 100%;
+            height: 20px;
+            border: none;
+            outline: none;
+        }
+
+        ul, li{
+            list-style-type: none;
+        }
+
+        ul{
+            width: 202px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        li{
+            width: 202px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        li.h{
+            background: #000;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="vue">
+         <div class="inp">    
+             <input type="text" v-model="searchVal" @keyup="jsonp()" @keydown.prevent.up="keydown($event)" @keydown.prevent.down="keydown($event)" @keydown.prevent.13="keydown($event)">
+         </div>
+         <ul>
+             <li v-for="(val, key) in vals" :class="{h:key == id}">
+                 {{val}}
+             </li>
+         </ul>
+    </div>
+</body>
+</html>
+<script>
+    // 默认情况父子组件无法共享数据
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: [],
+            searchVal: '',
+            id: 0
+        },
+        methods: {
+            jsonp(){
+                // POST /someUrl
+                this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', {
+                    wd: this.searchVal  //查询参数
+                }, {
+                    jsonp: 'cb' //回调函数的名字
+                }).then(res => {
+                    // get body data
+                    this.vals = res.data.s;
+                }, res => {
+                    // error callback
+                });
+            },
+            keydown(ev){
+                switch(ev.keyCode){
+                    case 13: 
+                        var id = this.id;
+                        this.searchVal = this.vals[id];
+                        this.id = 0;
+                    break;
+
+                    case 38: 
+                        if(this.id > 0){
+                            this.id --;
+                        }  
+                        console.log(id)                  
+                    break;
+
+                    case 40: 
+                        if(this.id < this.vals.length - 1){
+                            this.id ++;
+                        }                     
+                    break;    
+                    
+                    default:
+                        return false;
+                    break;
+                };
+            }
+        }
+    });      
+</script>

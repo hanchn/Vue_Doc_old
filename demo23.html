@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中跨父子组件共享数据props</title>
+    <title>Vue中跨父子组件共享数据过滤</title>
     <script src="https://unpkg.com/vue"></script>
     <style>
         *{
@@ -30,37 +30,76 @@
         components: {
             'per': {
                 data: function(){
-                    return {
-                        perVals: ''
-                    }
+                   return {
+                       vals: "我是父组件中定义的的数据",
+                       nums: 11
+                   }
                 },
-                template: '<span>父组件 获取子组件的值：{{perVals}}； <son @test="get"></son></span>',
-                methods: {
-                    get(data){
-                        console.log(data);
-                        this.perVals = data;
-                    }
-                },                
+                template: `
+                           <span>嵌套组件父 {{vals}} : <br/><br/>
+                                  <son :val="vals"></son><br/><br/>
+                                  <son2 :num="nums"></son2><br/><br/>
+                                  <son3></son3><br/>
+                           </span>
+                           `,
                 components: { //嵌套子组件的根为 a
                     'son': {
-                        data: function(){
-                             return {
-                                 val: '子组件中的数据'
-                             }
+                        props: {
+                            val: String
                         },
-                        template: `<strong>嵌套子组件 
-                                         {{val}} 
-                                         <input type="button" @click="send()" value="点击向父组件传递数据">
-                                  </strong>`,
-                        methods: {
-                            send(){
-                                this.$emit('test', this.val) //（事件，数据）
-                                console.log('发射了数据：' + this.val);
+                        template: '<strong>嵌套子组件son {{val}}</strong>'
+                    },
+                    'son2': {
+                        props: {
+                            num: [Number, String]
+                        },
+                        template: '<strong>嵌套子组件son2 {{num}}</strong>'
+                    },
+                    'son3': {
+                        props: {
+                            test: {
+                                Number: true,
+                                String: false,
+                                default: '100'
                             }
-                        }          
-                    }    
+                        },
+                        template: '<strong>嵌套子组件son2 {{test}}</strong>'
+                    }                                                    
                 }
             }
         }
     });      
+
+// 官方示例
+//     Vue.component('example', {
+//   props: {
+//     // 基础类型检测 (`null` 意思是任何类型都可以)
+//     propA: Number,
+//     // 多种类型
+//     propB: [String, Number],
+//     // 必传且是字符串
+//     propC: {
+//       type: String,
+//       required: true
+//     },
+//     // 数字，有默认值
+//     propD: {
+//       type: Number,
+//       default: 100
+//     },
+//     // 数组/对象的默认值应当由一个工厂函数返回
+//     propE: {
+//       type: Object,
+//       default: function () {
+//         return { message: 'hello' }
+//       }
+//     },
+//     // 自定义验证函数
+//     propF: {
+//       validator: function (value) {
+//         return value > 10
+//       }
+//     }
+//   }
+// })    
 </script>

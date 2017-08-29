@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的spa单页面应用开发</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="vue-resource.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+            font-family: 'Microsoft YaHei';
+        }
+    </style>
+</head>
+<body>
+    <div class="vue"></div>
+</body>
+</html>
+<script>
+    // 默认情况父子组件无法共享数据
+    new Vue({
+        el: '.vue',
+        data: {
+            vals: [],
+            searchVal: '测试',
+            id: 0
+        },
+        created: function(){
+            // VM示例已经创建后执行 第一步 还未进行编译
+            console.log('实例已经创建成功/还未进行编译！');
+        },
+        mounted: function(){
+            // 编译之后  dom ready 第二步 已经编译 
+            console.log('编译之后/所有DOM已经创建！');
+        }
+    });      
+</script>
