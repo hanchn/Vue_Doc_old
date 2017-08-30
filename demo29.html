@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue生存周期中的钩子</title>
     <script src="https://unpkg.com/vue"></script>
-    <script src="vue-resource.js"></script>
     <style>
         *{
             padding: 0;
@@ -27,11 +26,6 @@
     // 默认情况父子组件无法共享数据
     new Vue({
         el: '.vue',
-        data: {
-            vals: [],
-            searchVal: '测试',
-            id: 0
-        },
         created: function(){
             // VM示例已经创建后执行 第一步 还未进行编译
             console.log('实例已经创建成功/还未进行编译！');

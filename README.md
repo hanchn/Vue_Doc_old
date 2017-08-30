@@ -32,7 +32,8 @@
 27. Vue中的resource Ajax和JSONP
 28. Vue中的resource JSONP实战
 29. Vue生存周期中的钩子
-30. Vue中的spa单页面应用开发
+30. Vue中的extend与component区别
+31. Vue中的router初入门
 
 拓展内容
 Vue debug工具安装
@@ -41,6 +42,7 @@ bower教程
 Webpack教程
 
 还没准备到的
+extend 与 component的区别
 动画
 compunted 自定义属性
 自定义属性 vm.$options

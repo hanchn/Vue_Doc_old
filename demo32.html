@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的动态路由匹配params</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body{
+            height: 100%;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .con{
+            width: 200px;
+            height: 200px;
+            border:1px solid #CCC;
+        }
+    </style>
+</head>
+<body>
+    <div class="vue">
+         <router-link to="/">跳转到主页</router-link>
+         <div class="con">
+            <router-view>
+
+            </router-view>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // 定义组件
+    const home = {template: '<h1>这是Home中的{{$route.params.id}}</h1>'};
+    
+    // 定义路由
+    const routes = [
+        {path: '/:userName', component: home}
+    ];
+
+    // 创建路由实例
+    const router = new VueRouter({
+        routes
+    })
+
+
+    // 默认情况父子组件无法共享数据
+    new Vue({
+        el: '.vue',
+        router: router
+    });      
+</script>
