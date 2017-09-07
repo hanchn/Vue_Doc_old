@@ -104,7 +104,7 @@ let app = new Vue({
 
 });
 
-app.$mount('#åååapp');
+app.$mount('#app');
 ```
 
 ### 创建第一个Vue应用
