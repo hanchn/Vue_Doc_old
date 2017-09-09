@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="这是一个按钮" @keyup.test="fun()">
+    </div>
+</body>
+</html>
+<script>
+    // 按键修饰符
+    // 数字按键修饰符
+    // 别名修饰符  修饰符不是很多 我们可以自己去拓展别名
+    Vue.config.keyCodes = {
+        'test': 13,
+        // 'adminMe'// 不可以
+    }
+
+    new Vue({
+        el: '#app',
+        data: {
+        },
+        methods: {    
+            fun(){
+                alert(1);
+            }      
+        }
+    })
+</script>

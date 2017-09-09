@@ -1,10 +1,12 @@
-## Vue中给的extend构造器解析
+## Vue中的extend构造器详解
 
 在前文中，我们曾有示例提到extend可以作为句柄挂载到component上，来创建组件
 
-### extend挂载
+### 通过component挂载
 
-1）单组件句柄挂载
+此处的用法类似于通过extend构模板结构，然后挂载到component和components上
+
+1）在component上进行extend挂载
 
 ```
     <div id="app">

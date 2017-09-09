@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        table{
+            border: 1px solid #e8e8e8;
+            border-collapse: collapse;
+        }
+
+        th, td{
+            border: 1px solid #e8e8e8;
+            width: 150px;
+            height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>手机号</th>
+                <th>管理</th>
+            </thead>
+            <tbody>
+                <tr v-for="(val, key) in vals">
+                    <td>{{key + 1}}</td>
+                    <td>{{val.name}}</td>
+                    <td>{{val.gender}}</td>
+                    <td>{{val.age}}</td>
+                    <td>{{val.tel}}</td>
+                    <td><input type="button" @click="del(key)" value="删除当前数据"></td>
+                </tr>
+                <tr v-show="vals.length < 1">
+                    <td colspan="6">当前暂无数据...</td>
+                </tr>
+                <tr>
+                    <td><input type="text" v-model="name"></td>
+                    <td><input type="text" v-model="gender"></td>
+                    <td><input type="text" v-model="age"></td>
+                    <td><input type="text" v-model="tel"></td>
+                    <td><input type="button" value="录入" @click="insert()"></td>
+                    <td><input type="button" value="一键删除所有" @click="delAll()"></td>
+                </tr>
+            </tbody>            
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            vals: [
+                {'name': 'Peny', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Bob', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Tom', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Jerry', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Summer', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Lili', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Wang', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Peny', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Peny', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Peny', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+                {'name': 'Peny', 'gender': 'female', 'age': '20', 'tel': '188888888'},
+            ],
+            name: '',
+            gender: '',
+            age: '',
+            tel: ''
+        },
+        methods: {
+            del(key){
+                 this.vals.splice(key, 1);
+            },
+            insert(){
+                let data = {
+                    'name': this.name,
+                    'gender': this.gender,
+                    'age': this.age,
+                    'tel': this.tel
+                }
+                this.vals.push(data);
+                this.name = '';
+                this.gender = '';
+                this.age = '',
+                this.tel = ''
+                
+            },
+            delAll(){
+                this.vals = [];
+            }
+        }
+      
+    })
+</script>

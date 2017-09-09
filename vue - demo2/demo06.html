@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="nums">
+        <h1 v-if="nums < 10">当前的值：{{nums}} 是小于10的</h1> 
+        <h1 v-else-if="nums == 10">当前的值：{{nums}} 等于10的</h1>
+        <h1 v-else>当前的值：{{nums}} 大于10的</h1>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nums: 10
+        }
+    })
+</script>

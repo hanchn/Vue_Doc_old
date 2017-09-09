@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .per{
+            width: 200px;
+            height: 200px;
+            border: 5px solid #000;
+        }
+
+        .son{
+            width: 100px;
+            height: 100px;
+            border: 5px solid red;
+            display: block;
+        } 
+
+        .bg{
+            background: blue;
+        }       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="per" @click="per()">
+            <a href="/" class="son" @click.prevent.stop="son()"></a>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // 最原始的事件执行的顺序 冒泡的形式进行事件的执行的
+    // 从小到大进行事件执行的
+    // 默认事件执行的方式 是 事件冒泡
+    // 事件捕获 capture
+    // 阻止事件冒泡的方式 stop
+    // 阻止默认行为 prevent
+    new Vue({
+        el: '#app',
+        data: {
+            
+        },
+        methods: {    
+            per(){
+                alert('per');
+            },
+            son(){
+                alert('son');
+            },                  
+        }
+    })
+</script>

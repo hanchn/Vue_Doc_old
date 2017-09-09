@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            border:1px solid #000;
+        }
+
+        .red{
+            background: red;
+        }
+
+        .blue{
+            background: blue;
+        }
+
+        .w{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="test" :class="[bg, w]"></div>
+        <input type="button" @click="setBg()" value="点击我给div添加样式">
+        <input type="text" v-model="url">
+        <a :href="url" :style="{'font-size': 30 + 'px'}">超链接跳转</a>
+        <a :href="url" :style="[style1, style2]">超链接跳转</a>
+    </div>
+</body>
+</html>
+<script>
+    //v-bind  :
+    new Vue({
+        el: '#app',
+        data: {
+            bg: 'red',
+            w: 'w',
+            url: '/',
+            style1: {'font-size': 60 + 'px'},
+            style2: {'background': 'red'}
+        },
+        methods: {
+            setBg(){
+                if(this.bg == 'red'){
+                    this.bg = 'blue';
+                } else {
+                    this.bg = 'red'
+                }
+                console.log(this.bg)
+            }
+        }
+    })
+</script>

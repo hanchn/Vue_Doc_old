@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <input type="button" @click="fun()" value="点击累加数据">
+         <h1>{{val}}</h1>
+    </div>
+</body>
+</html>
+<script>
+// 绑定事件的指令  v-on
+// v-on简写的方式 @
+// Vue拓展很多的指令 通过指令我们可以进行很多的JS操作
+new Vue({
+   el: '#app',
+   data: {
+       val: 0
+   },
+   methods: {
+       fun(){
+           this.val++;
+       }
+   } // 自定义方法群
+
+   // this 
+});
+</script>

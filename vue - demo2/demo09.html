@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @focus="show()"  @blur="show2()">
+        <h1 v-show="status">进入焦点了</h1>
+        <h1 v-show="status2">失去焦点了</h1>
+        <!-- <input type="button" @mouseleave="fun()" value="这是一个按钮"> -->
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+           status: false,
+           status2: false,
+        },
+        methods: {
+            fun(){
+                alert('Hello World !');
+            },
+            show(){
+                this.status = true;
+            },
+            show2(){
+                this.status2 = true;
+            }            
+        }
+    })
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{val}}
+    </div>
+</body>
+</html>
+<script>
+// Vue 面向数据   MVC  M 数据Model V View视图页面  C Ctrolller 业务层
+// JQuery 面向交互的  
+
+// new Vue({
+//     el: '#app', // 通过el的方式去挂载了一个主DOM节点
+//     data: {
+//         val: 'Hello World!'
+//     }
+// })
+
+// new Vue({
+//     // el: '#app', // 通过el的方式去挂载了一个主DOM节点
+//     data: {
+//         val: 'Hello World!'
+//     }
+// }).$mount('#app');
+
+let vue = new Vue({
+    data: {
+        val: 'Hello World!'
+    }    
+});
+
+vue.$.mount('#app');
+</script>
