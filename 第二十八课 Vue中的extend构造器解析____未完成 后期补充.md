@@ -1,0 +1,67 @@
+## Vue中给的extend构造器解析
+
+在前文中，我们曾有示例提到extend可以作为句柄挂载到component上，来创建组件
+
+### extend挂载
+
+1）单组件句柄挂载
+
+```
+    <div id="app">
+        <test></test>
+    </div>
+
+    <script>
+        let test = {
+            template: '<h1>这是一个组件模板！</h1>'
+        }
+
+        Vue.component('test', test)
+
+        new Vue({
+            el:'#app'
+        })
+    </script>  
+```
+
+2）在components上进行extend挂载
+
+```
+    <div id="app">
+        <test></test>
+    </div>
+
+    <script>
+        let test = {
+            template: '<h1>这是一个组件模板！</h1>'
+        };
+ 
+        new Vue({
+            el:'#app',
+            components: {
+                test
+            }
+        })
+    </script> 
+```
+### 通过$mount挂载extend组件
+
+```
+    <div id="app">
+        <test></test>
+    </div>
+
+    <script>
+        let test = Vue.extend({
+            template: '<h1>这是一个组件模板！</h1>'
+        });
+
+        new test().$mount('test');
+ 
+        new Vue({
+            el:'#app'
+        });
+    </script>
+```
+
+
