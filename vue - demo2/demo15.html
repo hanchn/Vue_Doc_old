@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        数据过滤：<input type="text" v-model="nums">
+        <h1>{{nums | test}}</h1>
+        字符过滤：<input type="text" v-model="vals">
+        <h1>{{vals | deal('你好', '欢迎回来！')}}</h1>
+    </div>
+</body>
+</html>
+<script>
+    //过滤器 对一些数据做过滤效果
+    new Vue({
+        el: '#app',
+        data: {
+            nums: 0,
+            vals: 'yourName'
+        },
+        filters: {
+            test(nums){ //过滤器函数 会默认当前的参数 传进来作为 函数的第一个参数
+                 if(nums - 0 < 10){
+                     return 10;
+                 } 
+                 return nums;
+            },
+            deal(vals, val1, val2){
+                return val1 + vals + val2;
+            }
+        }
+    })
+</script>

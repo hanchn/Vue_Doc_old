@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test></test>
+    </div>
+</body>
+</html>
+<script>
+// 每个组件的作用域（方法 数据 官方是这样建议的）
+// 不应该直接去构造函数中去获取方法 数据
+// 为我们自己的组件自定义自己的方法 或者具体的Data
+// Vue.component('test', {
+//     template: '<input type="button" value="点击我" @click="fun()">',
+//     methods: {
+//         fun(){
+//             alert(1);
+//         }
+//     }
+// })
+
+new Vue({
+    el: '#app',
+    components: {
+        test: {
+            template: '<input type="button" value="点击我" @click="fun()">',
+            methods: {
+                fun(){
+                    alert(1);
+                }
+            }            
+        }
+    }
+})
+</script>

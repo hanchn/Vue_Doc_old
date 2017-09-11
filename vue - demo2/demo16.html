@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test></test>
+        <com></com>
+        <new-tem></new-tem>
+    </div>
+</body>
+</html>
+<script>
+    //vue 经常用来做轻量级的单页应用 （在一个页面进行所有页面的开发）
+    //所有页面只有一个页面 如何展示所有页面的信息呢？
+    // 一个轻量级的网站（首页 登录注册页面 列表  详情 ）
+    // 组件 组合各种不同的网页
+    // component  用于创建一个单独的组件
+    Vue.component('test', {
+        template: '<h1>就是一个普通的标题</h1>'// 模板结构
+    }) // 组件的意思
+
+    new Vue({
+        el: '#app',
+        data: {
+
+        },
+        components: { // s 复数 用于创建多个组件的
+            'com': {
+                template: '<h1>就是第二个组件</h1>'// 模板结构
+            },
+            'newTem': { //组件中 驼峰式命名 在调用的时候 要注意把  驼峰式改成横杠
+                template: '<h1>就是第三个组件</h1>'
+            }
+        }
+    })
+</script>

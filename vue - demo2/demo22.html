@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <input type="button" value="切换当前的组件" @click="fun(tem)">
+         <component :is="tem"></component>
+         <!-- :is 切换当前的组件名的 -->
+    </div>
+</body>
+</html>
+<script>
+// 组件的切换
+let aa = Vue.component('aa', {
+    template: '<h1>这是一个测试用的组件</h1>'
+})
+
+let bb = Vue.component('bb', {
+    template: '<h1>这是二个测试用的组件</h1>'
+})
+
+new Vue({
+    el: '#app',
+    data: {
+        tem: aa
+    },
+    methods: {
+       fun(val){
+           if(val == aa){
+               this.tem = bb
+           } else {
+               this.tem = aa
+           }
+       }
+    }
+})
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div v-html="val"></div>
+       <div v-text="val"></div>
+    </div>
+</body>
+</html>
+<script>
+    //官方是不建议直接渲染HTML的 
+    new Vue({
+        el: '#app',
+        data: {
+            val: '<h1>这个表示大标题</h1>'
+        }
+    })
+</script>

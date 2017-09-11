@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test></test>
+        <test></test>
+    </div>
+</body>
+</html>
+<script>
+// 每个组件的作用域是封闭  不应该直接去修改 或者获取其他区域的数据
+// 组件中的数据和构造函数中的主数据不一样
+// 组件中的数据是以带有返回值的函数形式进行抛出的
+// 每一个新的组件 数据作用域都是新的  都会开辟一个新的数据作用域的空间
+// 组件需要有一个主作用域
+// 在一个组件作用域内  的数据是共享的
+// 独立的组件作用域是不共享的
+
+let data = { // 在外部定义的数据是全局作用域的数据
+    vals: 0  // 不建议定义全局作用的数据值 否则所有的组件都可以更改
+}
+
+Vue.component('test', {
+    template: 
+            `
+                <div>
+                    <button @click="num++">{{num}}</button>
+                    <button @click="num++">{{num}}</button>
+                    <button @click="num++">{{num}}</button>
+                </div>
+            `,
+    // data: function(){  // 这是一个带有 返回 数据对象 的函数
+    //     return {
+    //         num: 0
+    //     }
+    // }
+
+    data: () => ({
+        num: 0
+    })
+})
+
+new Vue({
+    el: '#app'
+})
+</script>

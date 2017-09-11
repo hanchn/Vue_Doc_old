@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <tem></tem>
+        <test></test>
+    </div>
+
+    <component id="com">
+        <h1>这是标签组件</h1>
+    </component>
+</body>
+</html>
+<script type="x-template" id="test">
+    <h1>这是一个JS组件</h1>
+</script>
+<script>
+// 两种新的拓展组件的方式
+// JS方式
+// 标签形式    
+let tem = {
+    template: '<h1>在外部定义的组件结构</h1>'
+}
+
+new Vue({
+    el: '#app',
+    components: {
+        tem, // ES  
+        test: {
+            template: '#test'
+        },
+        com: {
+            template: '#com'
+        }
+    }
+})
+</script>
