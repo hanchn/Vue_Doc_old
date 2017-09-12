@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .tabs{
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #000;
+            font-family: 'Microsoft YaHei';
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .tab{
+            width: 100px;
+            height: 40px;
+            float: left;
+        }
+
+        .tab.h{
+            background: #000;
+            color: #FFF;
+        }
+
+        .cons{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000; 
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+         <div class="tabs">
+             <div class="tab" v-for="tit in tits" :class="{h:tit.status}" @click="getName(tit.name)">
+                 {{tit.name}}
+             </div>
+         </div>
+         <div class="cons">
+             <component :is="tem"></component>
+         </div>
+    </div>
+</body>
+</html>
+<script>
+
+let one = Vue.component('one', {
+    template: '<h1>这是第一个组件</h1>'
+})
+
+let two = Vue.component('two', {
+    template: '<h1>这是第二个组件</h1>'
+})
+
+let three = Vue.component('three', {
+    template: '<h1>这是第三个组件</h1>'
+})
+
+new Vue({
+    el: '#app',
+    data: {
+       tits: [
+           {name: 'one', status: true},
+           {name: 'two', status: false},
+           {name: 'three', status: false}
+       ],
+       bg: 'h',
+       tem: one
+    },
+    methods: {
+        getName(name){
+            this.tem = name;
+            for(let i = 0; i < this.tits.length; i++){
+                if(this.tits[i].name == name){
+                    this.tits[i].status = true;
+                } else {
+                    this.tits[i].status = false;
+                }
+            }
+        }
+    }
+})
+</script>
