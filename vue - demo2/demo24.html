@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <h1>{{topVals}}</h1>
+         <per :get-top="topVals"></per>
+    </div>
+</body>
+</html>
+<script>
+// 定义对象与组件之间 或者 组件与组件之间的数据共享    
+// 我们如何将父组件中的数据分享给子组件呢？
+// props 类似于给子组件定义 接受数据的接口
+new Vue({
+    el: '#app',
+    data: {
+        topVals: '这个是顶级对象中的数据'
+    },
+    components: {
+        per: {
+            props: ['getTop'],// 必须是对象 []  {}
+            data: ()=>({
+                perVals: '这是一个父组件'
+            }),
+            template: `
+                          <div>
+                                <h1>{{perVals}}</h1>
+                                <h2>获取父亲的值 {{getTop}}</h2>
+                          </div>
+                      `
+        }
+    }
+})
+
+</script>

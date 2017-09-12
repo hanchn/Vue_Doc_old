@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <per></per>
+    </div>
+</body>
+</html>
+<script>
+    // 组件
+    Vue.component('per', {
+        template: `
+                      <div>
+                            <h1>这是一个父组件</h1>
+                            <son></son>
+                      </div>    
+                  `,
+        components: {
+            son: {
+                template: '<h1>这是一个子组件</h1>'
+            }
+        }          
+    })
+
+    new Vue({
+        el: '#app',
+        data:{
+
+        },
+        methods: {
+
+        }
+    });
+</script>
