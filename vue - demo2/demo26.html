@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test>
+            <h1 slot="header">
+                替换掉头部的内容
+            </h1>
+            <a>默认替换掉插槽的值</a>
+            <h1 slot="footer">
+                替换掉底部的内容
+            </h1>            
+        </test>
+    </div>
+</body>
+</html>
+<script>
+// 插槽    
+// 不具名（不具备名字的/ 没有名字的） 插槽
+// 不具名插槽 是具有唯一性的 整个组件中只能有唯一一个不具名插槽
+
+// 具名插槽（有名字的插槽）
+Vue.component('test', {
+    template: `
+                <div>
+                    <slot name="header">
+                         <h1>这个是头部/顶部</h1>
+                    </slot>
+                    <h1>
+                        <slot>插槽</slot>
+                    </h1>
+                    <h1>这是一个基本的组件test</h1>
+                    <slot name="footer">
+                          <h1>这个是底部</h1>
+                    </slot>
+                </div>
+              `,
+
+})
+
+new Vue({
+    el: '#app'
+})    
+</script>

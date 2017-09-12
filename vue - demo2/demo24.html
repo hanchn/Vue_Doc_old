@@ -33,8 +33,21 @@ new Vue({
                           <div>
                                 <h1>{{perVals}}</h1>
                                 <h2>获取父亲的值 {{getTop}}</h2>
+                                <son :getPer="perVals" :getTop="getTop"></son>
                           </div>
-                      `
+                      `,
+            components: {
+                son: {
+                    props: ['getPer', 'getTop'],
+                    template: `
+                                <div>
+                                    <h1>这是一个子组件</h1>
+                                    <h1>显示父组件的值：{{getPer}}</h1>
+                                    <h1>显示顶级对象的值：{{getTop}}</h1>
+                                </div>
+                              `
+                }
+            }          
         }
     }
 })

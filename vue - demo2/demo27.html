@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <test></test>
+    </div>
+</body>
+</html>
+<script>
+    // extend 定义模板 包含一些关于对象上面的一些属性
+    // 我不是很理解Vue两个地方 一个 可恶驼峰式命名 作者是个 傻逼
+    // 模板的定义  方法太多了 有点烦
+    // 用于模板的拓展
+
+    // 当成一个组件模板
+    // 把test当成句柄去使用
+    // let test = Vue.extend({
+    //     template: '<h1>Hello World !</h1>'
+    // })
+
+    // Vue.component('test', test);
+
+    // // Vue.component('test', {  // component是创建了一个组件实例
+    // //     template: '<h1>这是一个通过extend拓展出来的组件</h1>'
+    // // })
+
+    // 具备创建实例的能力的  
+    let test = Vue.extend({
+        props: ['vals'],
+        template: '<h1>Hello Wolrd ! {{vals}}</h1>'
+    });
+
+    new test({
+        propsData: {
+            vals: '测试一下propsData传值' // 属于从外部塞进去 扩展的一个值
+        }
+    }).$mount('test'); // 组件需要有名字 挂载一个名字上去
+
+
+    new Vue({
+        el: '#app'
+    });
+</script>

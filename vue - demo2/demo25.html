@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{topval}}</h1>
+        <per @perval="getData"></per> 
+    </div>
+</body>
+</html>
+<script>
+// 组件与组件之间  组件与外部的父DOM顶级元素之间 是无法直接使用对方的数据的 必须要采取非常规手段去进行数据的互换    
+new Vue({
+    el: '#app',
+    data: {
+        topval: ''
+    },
+    methods: {
+        getData(val){
+             console.log("这个是接受父组件的值：" + val);
+             this.topval = val;
+        }
+    },
+    components: {
+        per: {
+            data: () => ({
+                perval: '这个是父组件的测试值'
+            }),
+            template: `
+                          <div>
+                               <input type="button" value="把值发射给顶级元素" @click="send(perval)">
+                               <h3>组件中的显示内容：{{perval}}</h3>
+                          </div>
+                      `,
+            methods: {
+                send(perval){ // 这个把组件内部的数据  发射/传递/传送给父DOM 
+                    this.$emit('perval', perval); 
+                    console.log(perval);
+                }
+            }          
+        }
+    }
+})
+
+</script>
