@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/">首页</router-link>
+        <router-link to="/list">列表页面</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        // 1. 组件的模板创建
+        
+        let home = {
+            template: '<h1>这是首页</h1>'
+        }
+        
+        let list = {
+            template: '<h1>这是关于我们页面，当前页面的动态路由参数为：{{$route.params.id}} {{$route.params.name}}</h1>'
+        }
+        
+        // 2. 路由实例参数
+        
+        let routes = [
+            {
+                path: '/',
+                component: home,
+            },
+            {
+                path: '/list/:id/name/:name',
+                component: list,
+            }    
+        ];
+        
+        // 3. 创建路由实例
+        
+        let router = new VueRouter({
+            routes
+        })
+        
+        new Vue({
+            el: "#app",
+            router
+        })
+    </script>    
+</body>
+</html>
+

@@ -11,6 +11,13 @@ Webpack教程
 动画
 
 
+//待补充
+
+1.动画
+2.resource
+3.router
+4.生命周期
+5.webpack
 
 生命周期
 自定义属性 vm.$options  下拉列表
