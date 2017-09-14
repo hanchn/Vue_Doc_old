@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+   <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <router-link to="/">首页</router-link>
+            <router-link to="/about">关于我们</router-link>            
+        </nav>
+    </div>
+</body>
+</html>
+<script>
+// m v vm
+// 单页面应用 切换组件的应用
+// 路由 根据不同地址请求不同的页面
+// is 切换模板/组件的效果 并非路由功能
+// 配合地址请求去使用   
+new Vue({
+    el: '#app'
+})
+</script>

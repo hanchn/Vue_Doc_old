@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-resource.js"></script>
+    <style>
+        .h{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+         搜索相关的信息：<input type="text" @keyup="search" @keydown.40="{keys('down')}"  @keydown.38.prevent.stop="{keys('up')}" v-model="searchVal">
+         <ul>
+             <li v-for="(val, key) in resData" :class="{h: key == c}">
+                 {{val}}
+             </li>
+         </ul>
+    </div>
+</body>
+</html>
+<script>    
+new Vue({
+    el: '#app',
+    data: {
+        searchVal: '',
+        resData: [],
+        h: 'h',
+        c: 0
+    },
+    methods: {
+        search(){
+            this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', {
+               wd: this.searchVal  // 要向服务器请求的值是什么
+            }, {
+                jsonp: 'cb' //  数据请求函数 callback
+            }).then(function(res){
+                this.resData = res.data.s;
+            }, function(err){
+                console.log(err);
+            })
+        },
+        keys(way){
+            switch(way){
+                case 'up':
+                    if(this.c > 0)
+                    this.c --;
+                    this.searchVal = this.resData[this.c];
+                    this.c = 0;
+                break;
+                case 'down': 
+                    if(this.c < this.resData.length - 1)
+                    this.c ++;
+                    this.searchVal = this.resData[this.c];
+                    this.c = 0;
+                break;
+            }
+        }        
+    }
+
+})    
+</script>

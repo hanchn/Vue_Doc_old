@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过渡</title>
+    <script src="vue.js"></script>
+    <style>
+        .test{
+            width: 300px;
+            height:300px;
+            background: #000;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+
+        .test-enter-active, .test-leave-active{
+             transition: all 1s;
+        }
+
+        .test-enter, .test-leave-to{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="登录" @click="status=true">
+        <transition name="test">
+            <div class="test" v-show="status">
+                <input type="button" value="点击我关闭"  @click="status=false">
+            </div>
+        </transition>
+    </div>
+</body>
+</html>
+<script>
+    // animate
+    // Vue中给的动画  (不支持IE9 之前的浏览器的 )
+    // 如果咱们要使用 Vue 至少要保证咱们的框架的使用的浏览器必须是IE9 +
+    // 有三种动画的实现方式
+    // CSS3 实现动画 （过渡 transition animation）
+    // CSS3 别人写的CSS3的动画库
+    // JS 形式实现动画 （CSS3 + JS库）
+    // Vue中的动画需要配合两个东西 transition 标签 第二个 我们需要定义好 动画标签的name
+    // 动画的名字(name)必须要配合我们样式的名字
+    // 动画要结合 动作去做 v-show v-if v-for可以进行状态的判断的  
+    new Vue({
+        el: "#app",
+        data: {
+            status: false
+        }
+    })
+</script>

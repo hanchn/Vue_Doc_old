@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{nums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+        <h1>{{dealNums}}</h1>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nums: 100
+        }, 
+        computed: {  // 用于替代模板计算  直接在模板中进行数字的处理 不雅观
+            dealNums(){
+                return this.nums > 0 ? '大于0': '不大于0'
+            }
+        },
+        methods: { // 用于方法的拓展的
+
+        },
+        filters: { // 过滤操作的  （登录注册的内容验证 正则）
+
+        },
+        components: { //拓展组件的
+
+        },
+        watch: {
+            
+        }
+
+    })
+</script>

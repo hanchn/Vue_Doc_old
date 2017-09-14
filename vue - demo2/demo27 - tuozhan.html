@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <per></per>
+    </div>
+</body>
+</html>
+<script>
+    let per = Vue.component('per', {
+        data: () => ({
+            perval: '这个是父组件的数据',
+            getval: ''
+        }),
+        methods: {
+            onval(val){
+                console.log(val);
+                if(val){
+                    this.getval = val;
+                }
+            }
+        },
+        template: `
+                      <div>
+                           <h1>{{perval}}</h1>
+                           <h2>获取:<b>{{getval}}</b></h2>
+                           <son @sonval="onval"></son>
+                      </div>
+                  `,
+        components: {
+            son: {
+                data: () => ({
+                    sonval: '这个是子组件的数据'
+                }),      
+                methods: {
+                    emitData(val){
+                        console.log("已经发射了一个值:" + val);
+                        this.$emit('sonval', val);
+                    }
+                },          
+                template:`
+                            <div>
+                                <h3>{{sonval}}</h3>
+                                <input type="text" v-model="sonval">
+                            </div>
+                        `, 
+                watch: {
+                    sonval(newVal, oldVal){
+                        if(newVal){
+                            this.emitData(this.sonval);
+                        }
+                    }
+                }        
+            }
+        }          
+    })
+
+
+    new Vue({
+        el: '#app'
+    })
+</script>

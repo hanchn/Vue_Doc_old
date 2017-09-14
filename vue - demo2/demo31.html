@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="Animate.css">
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .shake-leave-to{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" @click="status = false" value="点击我试试">
+        <transition name="shake" enter-active-class="animated shake" leave-active-class="animated shake">
+            <div class="test" v-if="status"></div>
+        </transition>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            status: true
+        }
+    })
+</script>
