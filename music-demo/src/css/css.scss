@@ -1,0 +1,233 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    height: 100%;
+    font-size: 14px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    background: #f8fafc;
+}
+
+a, a:hover, a:visited{
+    text-decoration: none;
+}
+
+nav{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #42b983;
+    box-shadow: 0 2px 8px 0 rgba(7,17,27,.06);
+    font-size: 16px;
+    color: #FFF;
+    margin-bottom: 20px;
+}
+
+  nav a, nav a:visited, nav a:hover{
+    width: auto;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    float: left;
+    color: #e8e8e8;
+    font-size: 16px;
+  }
+
+    
+  .router-link-exact-active{
+    background: #42a483;
+    color: #FFF !important;
+    box-shadow: 1px 1px 2px 2px #42a683 inset;
+  }
+
+footer{
+    width: 100%;
+    height: 60px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.container{
+    width: 1000px;
+    height: auto;
+    padding: 20px;
+    background: #FFF;
+    border: 1px solid #fefefe;
+    border-radius: 4px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px 0 rgba(7,17,27,.06);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.breads{
+    width: 100%;
+    height: 36px;
+    border-bottom: 3px solid #e8e8e8;
+    font-size: 16px;
+    line-height: 36px;
+    margin-bottom: 20px;
+}
+
+.breads .tags{
+    width: auto;
+    height: 36px;
+    border-bottom: 3px solid #42a683;
+    float: left;
+    color: #42a683;
+    padding-right: 10px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+thead{
+    border-bottom: 3px solid #e8e8e8;
+}
+
+th, td{
+    height: 40px;
+    text-align: center;
+}
+
+tr{
+    border-bottom: 1px solid #e8e8e8;
+}
+
+table a{
+    cursor: pointer;
+    color: #42a683;
+}
+
+
+
+.inp_{
+    width: 300px;
+    height: 20px;
+    border: 1px solid #42b983;
+    border-radius: 4px;
+    padding: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.inp_ label{
+    font-size: 16px;
+    line-height: 20px;
+    width: 80px;
+    float: left;
+}
+
+.inp_ input{
+    width: 220px;
+    height: 20px;
+    border: none;
+    outline: none;
+    float: left;
+}
+
+.upload{
+    width: 300px;
+    height: auto;
+    margin: 50px auto;
+}
+
+.submit{
+    width: 320px;
+    height: 40px;
+    border-radius: 4px;
+    background: #42b983;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #42b983;
+    font-size: 16px;
+    color: #FFF;
+    outline: none;
+    cursor: pointer;
+}
+
+.play-list table{
+    width: 600px;
+    float: left;
+}
+
+.music{
+    width: 300px;
+    height: 500px;
+    float: left;
+    margin-right: 50px;
+    position: relative;
+}
+
+.songOuter{
+   width: 240px;
+   height: 240px;
+   border-radius: 100%;
+   position: absolute;
+   left: 30px;
+   top: 50px;
+   background: #e8e8e8;
+}
+
+.songInner{
+    width: 220px;
+    height: 220px;
+    border-radius: 100%;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: #42b983;   
+}
+
+.play-btn{
+    width: 0;
+    height: 0;
+    border-top: 60px solid transparent;
+    border-left: 90px solid #42a683;
+    border-bottom: 60px solid transparent;
+    border-right: 0;
+    position: absolute;
+    left: 80px;
+    top: 45px;
+}
+
+.bars{
+    width: 250px;
+    height: 10px;
+    background: #42b983;
+    border-radius: 10px;
+    position: absolute;
+    top: 330px;
+    left: 20px;
+}
+
+.pro{
+    width: 60%;
+    height: 10px;
+    background: #429583;
+    position: relative;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.proLine{
+    width: 5px;
+    height: 20px;
+    position: absolute;
+    top: -5px;
+    right: -3px;
+    background: #429583;
+}
+
+audio{
+    visibility: hidden;
+}

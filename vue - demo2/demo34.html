@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/">首页</router-link>
+        <router-link to="/about" @click="checks">关于我们</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script>
+// 涉及到导航的分发 我们点击相应的链接地址 得到不同的内容
+// Vue是一个单页面应用的 MVVM 框架 
+// 所有的内容是在一个页面中进行的 
+// 所有的内容都在一个页面  单页面 应用 
+// 通过不同的地址 请求当前页面 渲染不同的组件  
+
+let router = new VueRouter({
+    routes: [
+        {
+            path: '/', 
+            component: 
+            {
+                template: '<h1>这个是首页</h1>'
+            }
+        },
+        {
+            path: '/about', 
+            component: 
+            {
+                template: '<h1>这个是关于我们</h1>'
+            }
+        }        
+    ]
+});
+
+new Vue({
+    el: '#app',
+    router
+});
+</script>

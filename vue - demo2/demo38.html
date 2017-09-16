@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+         <router-link to="/">首页</router-link>
+         <router-link to="/list">列表页面</router-link>
+         <router-view></router-view>
+    </div>
+</body>
+</html>
+<script>
+new Vue({
+    el: '#app',
+    router: new VueRouter({
+        routes: [
+            {
+                path: '/',
+                component: {
+                    template: '<h1>这个是首页</h1>'
+                }
+            },
+            {
+                path: '/list/:id',
+                component: {
+                    template: `
+                                  <div>
+                                       <h1>这个是列表页面{{$route.params}}</h1>
+                                       <router-view></router-view>
+                                  </div>
+                              `
+                },
+                children: [
+                        {
+                        path: 'son',
+                        component: {
+                            template: '<h2>这个是嵌套的子路由</h2>'
+                        }
+                    }
+                ]
+            }            
+        ]
+    })
+})    
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+         <router-link to="{path: '/', name: 'home1'}">首页</router-link>
+         <input type="button" @click="links" value="这是跳转到关于我们">
+         <!-- <router-link to="/about">关于我们</router-link> -->
+         <router-view></router-view>
+    </div>
+</body>
+</html>
+<script>
+new Vue({
+    el: '#app',
+    methods: {
+        links(){
+            this.$router.push('/about');
+        }
+        
+    },
+    router: new VueRouter({
+        routes: [
+            {
+                path: '/',
+                name: 'home1',
+                component: {
+                    template: '<h1>这个是首页一</h1>'
+                }
+            },
+            {
+                path: '/',
+                name: 'home2',
+                component: {
+                    template: '<h1>这个是首页二</h1>'
+                }
+            },            
+            {
+                path: '/about',
+                component: {
+                    template: '<h1>这个是关于我们</h1>'
+                }
+            }            
+        ]
+    })
+})    
+</script>

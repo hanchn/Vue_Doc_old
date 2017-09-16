@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/">首页</router-link>
+        <router-link to="/about" @click="checks">关于我们</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script>
+let router = new VueRouter({
+    routes: [
+        {
+            path: '/', 
+            component: 
+            {
+                template: '<h1>这个是首页</h1>'
+            }
+        },
+        {
+            path: '/about', 
+            component: 
+            {
+                template: '<h1>这个是关于我们</h1>'
+            }
+        }        
+    ]
+});
+
+new Vue({
+    el: '#app',
+    router
+});
+</script>
